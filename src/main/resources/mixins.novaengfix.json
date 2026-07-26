@@ -1,0 +1,13 @@
+{
+	"package": "com.vcwdfca.novaengfix.mixin",
+	"required": true,
+	"refmap": "${mixin_refmap}",
+	"target": "@env(DEFAULT)",
+	"minVersion": "0.8.5",
+	"compatibilityLevel": "JAVA_8",
+	"mixins": [
+		"MixinDatabase"
+	],
+	"server": [],
+	"client": []
+}
