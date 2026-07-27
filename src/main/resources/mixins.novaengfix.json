@@ -6,7 +6,24 @@
 	"minVersion": "0.8.5",
 	"compatibilityLevel": "JAVA_8",
 	"mixins": [
-		"MixinDatabase"
+		"InvokerAssemblyBlockArrayCompanion",
+		"MixinAssemblyBlockArray",
+		"hypernet.AccessorComputationCenterCache",
+		"hypernet.AccessorNetNodeCache",
+		"hypernet.InvokerComputationCenterCheckNodeConnection",
+		"hypernet.MixinRegistryHyperNet",
+		"hypernet.MixinIntegrationCRT",
+		"hypernet.MixinNetNode",
+		"hypernet.MixinHyperNetNodePersistence",
+		"hypernet.MixinNetNodeCache",
+		"hypernet.MixinComputationCenter",
+		"hypernet.MixinDatabase",
+		"hypernet.MixinResearchStation",
+		"hypernet.MixinHyperNetHelper",
+		"hypernet.MixinHyperNetMachineEventHandler",
+		"hypernet.InvokerTileMultiblockMachineControllerStructureCheck",
+		"hypernet.MixinTileHyperNetTerminal",
+		"hypernet.MixinTileMultiblockMachineController"
 	],
 	"server": [],
 	"client": []

@@ -16,6 +16,8 @@ plugins {
     id 'org.jetbrains.changelog' version '2.5.0'
     id 'com.gradleup.shadow' version '9.4.+'
     id 'com.diffplug.spotless' version '8.4.0'
+    id 'org.jetbrains.kotlin.jvm'
+    id "org.jetbrains.kotlin.kapt" version '2.4.0'
 }
 
 apply from: 'gradle/scripts/helpers.gradle'
@@ -52,6 +54,19 @@ base {
 }
 
 tasks.decompressDecompiledSources.enabled !propertyBool('change_minecraft_sources') || !layout.buildDirectory.dir('rfg/minecraft-src').get().asFile.exists()
+
+// Gradle 9 validates the generated Minecraft source directory dependency explicitly.
+tasks.configureEach {
+    if (name in ['compilePatchedMcKotlin', 'kaptGenerateStubsPatchedMcKotlin']) {
+        dependsOn 'decompressDecompiledSources'
+    }
+    if (name in ['compileInjectedTagsKotlin', 'kaptGenerateStubsInjectedTagsKotlin']) {
+        dependsOn 'injectTags'
+    }
+    if (name in ['compileMcLauncherKotlin', 'kaptGenerateStubsMcLauncherKotlin']) {
+        dependsOn 'createMcLauncherFiles'
+    }
+}
 
 java {
     toolchain {
@@ -109,6 +124,7 @@ repositories {
         name 'CleanroomMC Maven'
         url 'https://maven.cleanroommc.com'
     }
+    mavenCentral()
 }
 
 dependencies {
@@ -149,6 +165,7 @@ dependencies {
         testImplementation 'org.junit.jupiter:junit-jupiter:5.7.1'
         testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     }
+    testImplementation 'org.jetbrains.kotlin:kotlin-test'
 }
 
 apply from: 'gradle/scripts/dependencies.gradle'
