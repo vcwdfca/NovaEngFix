@@ -6,8 +6,6 @@
 	"minVersion": "0.8.5",
 	"compatibilityLevel": "JAVA_8",
 	"mixins": [
-		"InvokerAssemblyBlockArrayCompanion",
-		"MixinAssemblyBlockArray",
 		"hypernet.AccessorComputationCenterCache",
 		"hypernet.AccessorNetNodeCache",
 		"hypernet.InvokerComputationCenterCheckNodeConnection",
